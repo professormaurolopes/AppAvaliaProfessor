@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".frmPrincipal"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/lblDisciplina"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Disciplina:"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spnDisciplinas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/lblProfessor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Professor:"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spnProfessor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/lblAula"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aula:"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edtAula"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="none"
+        android:text="Aula" />
+
+    <TextView
+        android:id="@+id/lblObservacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Observação:"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <CheckBox
+        android:id="@+id/chkObs01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chegou Atrasado" />
+
+    <CheckBox
+        android:id="@+id/chkObs02"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tirou dúvidas dos alunos" />
+
+    <TextView
+        android:id="@+id/lblNotaAula"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nota para a Aula:"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/rdgNotas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rdbNota10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="10.0" />
+
+        <RadioButton
+            android:id="@+id/rdbNota9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="9.0" />
+
+        <RadioButton
+            android:id="@+id/rdbNota8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="8.0" />
+
+        <RadioButton
+            android:id="@+id/rdbNota7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="7.0" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnSalvar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SALVAR" />
+
+    <Button
+        android:id="@+id/btnListar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LISTAR" />
+
+</LinearLayout>
