@@ -122,25 +122,38 @@ public class frmPrincipal extends AppCompatActivity implements View.OnClickListe
         //Após a recuperação dos dados, vamos acionar uma nova Activity
         //para apresentar os dados informados e confirmar o salvamento
         //dos mesmos
+        //Criação da Intent (origem, destino)
         Intent it = new Intent(this,MostraDados.class);
+        //Criação do Bundle (local para armazenar os dados a serem enviados
+        //para a próxima Activity
         Bundle params = new Bundle();
         params.putString("disciplina",disciplina);
         params.putString("professor",professor);
         params.putString("aula",aula);
         params.putString("observacao",observacao);
         params.putInt("nota",nota);
+        //Associação do objeto Bundle a nossa Intent
         it.putExtras(params);
+        //Chama a nossa próxima Activity
         startActivity(it);
     }
 
     public void listarDados(){
 
         String msg;
+        //Quando da primeira instanciação ocorrerá a criação do arquivo do banco de dados
+        //e será chamado o método onCreate, criando a estrutura do banco de dados
+        //Lembrando que para a alterar a estrutura do banco de dados, devemos alterar
+        //a versão do mesmo (DB_VERSION da classe CriaBD), desta forma será chamado
+        //o método onUpgrade
         CriaDB criadb = new CriaDB(this);
         db = criadb.getWritableDatabase();
         String[] colunas = {"disciplina","professor","nota"};
         Cursor c = db.query("avaliaprofessor",colunas,null,null,null,null,null);
         while (c.moveToNext()){
+            //A recuperação dos conteúdos das colunas é feito baseado no indice
+            //que esta ocupa dentro do array de colunas
+            //Logo índice 1 de getString() é referente a "professor" colunas[]
             msg = c.getString(1);
             Toast.makeText(this,msg, Toast.LENGTH_SHORT).show();
         }
