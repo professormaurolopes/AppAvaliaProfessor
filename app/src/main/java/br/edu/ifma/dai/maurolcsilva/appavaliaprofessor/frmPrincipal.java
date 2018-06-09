@@ -14,6 +14,10 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import dao.DAOAvaliaProfessor;
+import modelo.AvaliaProfessor;
 import util.CriaDB;
 
 public class frmPrincipal extends AppCompatActivity implements View.OnClickListener {
@@ -26,6 +30,8 @@ public class frmPrincipal extends AppCompatActivity implements View.OnClickListe
     private Button btnSalvar;
     private Button btnListar;
     private SQLiteDatabase db;
+    private DAOAvaliaProfessor daoavaliaprofessor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +59,7 @@ public class frmPrincipal extends AppCompatActivity implements View.OnClickListe
         spnDisciplinas.setAdapter(adapterdisciplinas);
         ArrayAdapter<String> adapterprofessores = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,professores);
         spnProfessores.setAdapter(adapterprofessores);
+        daoavaliaprofessor = new DAOAvaliaProfessor(this);
 
     }
 
@@ -146,17 +153,21 @@ public class frmPrincipal extends AppCompatActivity implements View.OnClickListe
         //Lembrando que para a alterar a estrutura do banco de dados, devemos alterar
         //a versão do mesmo (DB_VERSION da classe CriaBD), desta forma será chamado
         //o método onUpgrade
-        CriaDB criadb = new CriaDB(this);
-        db = criadb.getWritableDatabase();
-        String[] colunas = {"disciplina","professor","nota"};
-        Cursor c = db.query("avaliaprofessor",colunas,null,null,null,null,null);
-        while (c.moveToNext()){
+        ArrayList<AvaliaProfessor> lista = daoavaliaprofessor.listar();
+        for(AvaliaProfessor ap:lista){
+            Toast.makeText(this,ap.getDisciplina(),Toast.LENGTH_SHORT).show();
+        }
+        //CriaDB criadb = new CriaDB(this);
+        //db = criadb.getWritableDatabase();
+        //String[] colunas = {"disciplina","professor","nota"};
+        //Cursor c = db.query("avaliaprofessor",colunas,null,null,null,null,null);
+        //while (c.moveToNext()){
             //A recuperação dos conteúdos das colunas é feito baseado no indice
             //que esta ocupa dentro do array de colunas
             //Logo índice 1 de getString() é referente a "professor" colunas[]
-            msg = c.getString(1);
-            Toast.makeText(this,msg, Toast.LENGTH_SHORT).show();
-        }
+            //msg = c.getString(1);
+            //Toast.makeText(this,msg, Toast.LENGTH_SHORT).show();
+        //}
 
     }
 }

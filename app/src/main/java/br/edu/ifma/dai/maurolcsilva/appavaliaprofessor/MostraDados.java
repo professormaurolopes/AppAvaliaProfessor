@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import dao.DAOAvaliaProfessor;
+import modelo.AvaliaProfessor;
 import util.CriaDB;
 
 public class MostraDados extends AppCompatActivity {
@@ -23,6 +25,8 @@ public class MostraDados extends AppCompatActivity {
     private String aula;
     private String observacao;
     private int nota;
+    private DAOAvaliaProfessor daoavaliaprofessor;
+    private AvaliaProfessor ap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,18 +51,29 @@ public class MostraDados extends AppCompatActivity {
         lblProfessor.setText(professor);
         lblAula.setText(aula);
         lblNota.setText(String.valueOf(nota));
+        //Criacao do objeto AvaliaProfessor
+        ap = new AvaliaProfessor();
+        ap.setDisciplina(disciplina);
+        ap.setProfessor(professor);
+        ap.setAula(aula);
+        ap.setNota(nota);
+        ap.setObservacao(observacao);
+        //Criacao do DAO
+        daoavaliaprofessor = new DAOAvaliaProfessor(this);
+        //daoavaliaprofessor.salvar(ap);
         //Criação do Banco de Dados
-        CriaDB criabd = new CriaDB(this);
-        db = criabd.getWritableDatabase();
+        //CriaDB criabd = new CriaDB(this);
+        //db = criabd.getWritableDatabase();
     }
 
     public void gravarDados(View v){
-        ContentValues valores = new ContentValues();
-        valores.put("disciplina",disciplina);
-        valores.put("professor", professor);
-        valores.put("aula",aula);
-        valores.put("nota",nota);
-        valores.put("observacao",observacao);
-        db.insert("avaliaprofessor",null,valores);
+        daoavaliaprofessor.salvar(ap);
+        //ContentValues valores = new ContentValues();
+        //valores.put("disciplina",disciplina);
+        //valores.put("professor", professor);
+        //valores.put("aula",aula);
+        //valores.put("nota",nota);
+        //valores.put("observacao",observacao);
+        //db.insert("avaliaprofessor",null,valores);
     }
 }
